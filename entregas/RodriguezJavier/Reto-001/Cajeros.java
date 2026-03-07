@@ -7,7 +7,6 @@ public class Cajeros {
         boolean[] cajerosLibres = {true, true, true, true};
         int clientesEnCola = 0;
         final int minutosEnUnDia = 12 * 60;
-        boolean nuevoCliente = false;
         int minutosSinCola = 0;
         int totalObjetos = 0;
         Random aleatorio = new Random();
@@ -17,7 +16,8 @@ public class Cajeros {
             if (tiempo > 100) {
                 break;
             }
-
+            
+            boolean nuevoCliente = false;
             if (Math.random() * 100 < 40) {
                 nuevoCliente = true;
                 clientesEnCola++;
