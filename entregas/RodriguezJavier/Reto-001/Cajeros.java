@@ -6,7 +6,7 @@ public class Cajeros {
         int[] objetosAtendidos = {0, 0, 0, 0};
         boolean[] cajerosLibres = {true, true, true, true};
         int clientesEnCola = 0;
-        final int minutosEnUnDia = 12 * 60;
+        final int MINUTOS_EN_UN_DIA = 12 * 60;
         int minutosSinCola = 0;
         int totalObjetos = 0;
         Random aleatorio = new Random();
