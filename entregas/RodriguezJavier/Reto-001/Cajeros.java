@@ -23,7 +23,7 @@ public class Cajeros {
                 nuevoCliente = true;
                 clientesEnCola++;
 
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < cajerosLibres.length; i++) {
                     if (cajerosLibres[i]) {
                         clientesAtendidos[i]++;
                         cajerosLibres[i] = false;
@@ -35,7 +35,7 @@ public class Cajeros {
                 }
             }
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < cajerosLibres.length; i++) {
                 if (objetosAtendidos[i] > 0) {
                     objetosAtendidos[i]--;
                     if (objetosAtendidos[i] == 0) {
@@ -58,7 +58,7 @@ public class Cajeros {
                 System.out.println(" - Llega 0 persona - En cola: " + clientesEnCola);
             }
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < cajerosLibres.length; i++) {
                 System.out.print(" Caja" + (i + 1) + ":[" + objetosAtendidos[i] + "] ");
             }
             
