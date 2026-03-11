@@ -2,26 +2,28 @@ import java.util.Random;
 
 public class Cajeros {
     public static void main(String[] args) {
-        int[] clientesAtendidos = {0, 0, 0, 0}; // Número de clientes atendidos por cada cajero
-        int[] objetosAtendidos = {0, 0, 0, 0}; // Número de objetos que atiende cada cliente
-        boolean[] cajerosLibres = {true, true, true, true}; // Estado de cada cajero (libre/ocupado)
-        int clientesEnCola = 0; // Número de clientes en cola
-        final int minutosEnUnDia = 12 * 60; // Total de minutos en un día
-        boolean nuevoCliente = false; // Indica si llega un nuevo cliente
-        int minutosSinCola = 0; // Contador de minutos en los que la cola está vacía
-        int totalObjetos = 0; // Total de objetos vendidos durante el día
+        int[] clientesAtendidos = {0, 0, 0, 0};
+        int[] objetosAtendidos = {0, 0, 0, 0};
+        boolean[] cajerosLibres = {true, true, true, true};
+        int clientesEnCola = 0;
+        final int MINUTOS_EN_UN_DIA = 12 * 60;
+        int minutosSinCola = 0;
+        int totalObjetos = 0;
         Random aleatorio = new Random();
 
-        // Simulación de los minutos del día
+        // Bucle tiempo
         for (int tiempo = 1; tiempo < minutosEnUnDia; tiempo++) {
             if (tiempo > 100) {
-                break; // Detener la simulación después de 100 minutos
+                break;
             }
+            
+            boolean nuevoCliente = false;
 
             if (Math.random() * 100 < 40) {
                 nuevoCliente = true;
                 clientesEnCola++;
-                for (int i = 0; i < 4; i++) {
+
+                for (int i = 0; i < cajerosLibres.length; i++) {
                     if (cajerosLibres[i]) {
                         clientesAtendidos[i]++;
                         cajerosLibres[i] = false;
@@ -33,7 +35,7 @@ public class Cajeros {
                 }
             }
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < cajerosLibres.length; i++) {
                 if (objetosAtendidos[i] > 0) {
                     objetosAtendidos[i]--;
                     if (objetosAtendidos[i] == 0) {
@@ -48,15 +50,18 @@ public class Cajeros {
             
             System.out.println("--------------------------------------------------------------");
             System.out.print("MINUTO " + tiempo);
+
             if (nuevoCliente) {
                 System.out.println(" - Llega 1 persona - En cola: " + clientesEnCola);
                 nuevoCliente = false;
             } else {
                 System.out.println(" - Llega 0 persona - En cola: " + clientesEnCola);
             }
-            for (int i = 0; i < 4; i++) {
+
+            for (int i = 0; i < cajerosLibres.length; i++) {
                 System.out.print(" Caja" + (i + 1) + ":[" + objetosAtendidos[i] + "] ");
             }
+            
             System.out.println();
 
             if (clientesEnCola >= 15) {
@@ -67,7 +72,9 @@ public class Cajeros {
         for (int i = 0; i < clientesAtendidos.length; i++) {
             System.out.println("Clientes totales que pasaron por la caja " + (i + 1) + ": " + clientesAtendidos[i]);
         }
+
         int total = 0;
+
         for (int i = 0; i < clientesAtendidos.length; i++) {
             total += clientesAtendidos[i];
         }
